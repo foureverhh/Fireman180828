@@ -31,7 +31,7 @@ public class FiremanController : MonoBehaviour {
         currentPos--;
         if (currentPos < 0)
             currentPos = firemanPos.Count - 1;
-        Debug.Log("curretPos in Left: " + currentPos);
+       //Debug.Log("curretPos in Left: " + currentPos);
         transform.position = firemanPos[currentPos].position;  
     }
 
@@ -40,7 +40,7 @@ public class FiremanController : MonoBehaviour {
         currentPos++;
         if (currentPos > firemanPos.Count - 1)
             currentPos = 0;
-        Debug.Log("curretPos in right: " + currentPos);
+        //Debug.Log("curretPos in right: " + currentPos);
         transform.position = firemanPos[currentPos].position;
     }
 }
