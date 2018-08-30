@@ -15,7 +15,7 @@ public class JumperController : MonoBehaviour
         StartCoroutine(JumperShow());
     }
 
-    //Give player 3 seconds to prepare 
+    //Give player 2 seconds to prepare and jumper to jump every 0.5 second
     IEnumerator JumperShow()
     {
         yield return new WaitForSeconds(reactionTime);
@@ -23,19 +23,16 @@ public class JumperController : MonoBehaviour
             yield return new WaitForSeconds(moveInterval);
             transform.position = jumperPos[currentPos].position;
             JumperMove();
-            Debug.Log("Position in Jumpshow" + currentPos);
-       }
-        
+         //   Debug.Log("Position in Jumpshow" + currentPos);
+       } 
     }
 
-    //Make jumper jumps to next position every second
     void JumperMove()
     {
         currentPos++;
         if (currentPos > jumperPos.Count - 1)
             currentPos = 0;
         transform.position = jumperPos[currentPos].position;
-        
-        Debug.Log("Position in JumperMove" + currentPos);
+       // Debug.Log("Position in JumperMove" + currentPos);
     }
 }
