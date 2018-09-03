@@ -51,12 +51,18 @@ public class JumperController : MonoBehaviour
         yield return null;
         if (jumperPos[currentPos].GetComponent<DangerPosition>().danger)
         {
-            if (gameManager.Crack(gameObject))
+            Debug.Log("Danger place");
+            bool catchJumper = gameManager.Crack(gameObject);
+            if (catchJumper)
             {
                 Debug.Log("Get jumper");
             }
             else
-                Debug.Log("Lose jumper");
+            {
+                //To remove one live if miss and destroy the jumper
+                Destroy(transform.parent.gameObject);
+                Debug.Log("Miss jumper");
+            }    
         }
         // Debug.Log("Position in JumperMove" + currentPos);
     }
