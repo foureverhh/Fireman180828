@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public GameObject enemy;
     public GameObject player;
-    Collider2D firemanCollider;
+    //Collider2D firemanCollider;
     //Collider2D jumperCollider;
     
     //To controll the spawntime and moverDeley
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        firemanCollider = player.GetComponentInChildren<Collider2D>();
+        //firemanCollider = player.GetComponentInChildren<Collider2D>();
         //jumperCollider = enemy.GetComponentInChildren<Collider2D>();  
         StartCoroutine(spawnJumper());
    
@@ -60,6 +60,24 @@ public class GameManager : MonoBehaviour {
 
     public bool Crack(GameObject jumper)
     {
+        LayerMask firemanMask = LayerMask.GetMask("Fireman");
+        RaycastHit2D hit = Physics2D.Raycast(jumper.transform.position, Vector2.down,Mathf.Infinity, firemanMask);
+        if (hit.collider != null)
+        {
+            Debug.Log("Two touches");
+            //Each time to get jumper at danger place add 10 on score
+            AddScore();
+            return true;
+        }
+        else
+        {
+            Debug.Log("RemoveLife is called");
+            LoseOneLife();
+            // livesController.RemoveLife();
+            return false;
+        }
+            
+        /*
         if(firemanCollider == null || jumper.GetComponent<Collider2D>() == null)
         {
             Debug.Log("Collider can not found");
@@ -77,7 +95,8 @@ public class GameManager : MonoBehaviour {
             LoseOneLife();
            // livesController.RemoveLife();
             return false; 
-        }     
+        }   
+        */
     }
 
     //To check whether lives are enough to continue

@@ -26,12 +26,12 @@ public class JumperController : MonoBehaviour
             yield return new WaitForSeconds(moveInterval);
             transform.position = jumperPos[currentPos].position;
            // yield return new WaitForSeconds(moveInterval);
-            StartCoroutine(JumperMove());
+            JumperMove();
          //   Debug.Log("Position in Jumpshow" + currentPos);
        } 
     }
 
-    IEnumerator JumperMove()
+    void JumperMove()
     {
         // if(currentPos < jumperPos.Count - 1)
         // {
@@ -48,7 +48,7 @@ public class JumperController : MonoBehaviour
         }
         transform.position = jumperPos[currentPos].position;
         //Give one frame to get the result of gameManager.Crack()
-        yield return null;
+        //yield return null;
         if (jumperPos[currentPos].GetComponent<DangerPosition>().danger)
         {
             Debug.Log("Danger place");
